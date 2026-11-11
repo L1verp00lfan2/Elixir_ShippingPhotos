@@ -24,12 +24,19 @@ end
 # Plug.Conn.t()  # returns a connection
 
 @spec job(Plug.Conn.t(), map()) :: Plug.Conn.t()
+
 def job(conn, %{"id" => id}) do
-  photos = [
-    "Front.jpg",
-    "Side.jpg",
-    "Back.jpg"
-  ]
+  photo_folder =
+    "C:/Users/joe.dempsey/OneDrive - PlayCore/Pictures/Camera Roll/2026"
+
+  photos =
+    case File.ls(photo_folder) do
+      {:ok, files} ->
+        files
+
+      {:error, reason} ->
+        ["ERROR: #{inspect(reason)}"]
+    end
 
   render(conn, :job,
     id: id,

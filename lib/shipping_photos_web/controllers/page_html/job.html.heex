@@ -4,10 +4,20 @@
   Job Number: <%= @id %>
 </p>
 
-<h2>Photos</h2>
+<h2>Photos Found</h2>
 
 <ul>
   <%= for photo <- @photos do %>
     <li><%= photo %></li>
+  <% end %>
+</ul>
+
+<ul>
+  <%= for photo <- @photos do %>
+    <li>
+      <.link navigate={~p"/job/#{@id}/photo/#{photo}"}>
+        <%= photo %>
+      </.link>
+    </li>
   <% end %>
 </ul>
