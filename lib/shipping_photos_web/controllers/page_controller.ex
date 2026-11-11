@@ -71,5 +71,18 @@ def find_job(conn, %{"job_number" => job_number}) do
   redirect(conn, to: "/job/#{job_number}")
 end
 
+#Image Serving Functionality
+
+def image(conn, %{"filename" => filename}) do
+  photo_folder =
+    "C:/Users/joe.dempsey/OneDrive - PlayCore/Pictures/Camera Roll/2026"
+
+  photo_path = Path.join(photo_folder, filename)
+
+  conn
+  |> Plug.Conn.put_resp_content_type("image/jpeg")
+  |> send_file(200, photo_path)
+end
+
 
 end

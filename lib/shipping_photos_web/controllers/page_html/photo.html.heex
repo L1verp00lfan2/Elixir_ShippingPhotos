@@ -1,8 +1,20 @@
+<h1>📷 Photo Viewer</h1>
 
+<p>
+  Job Number: <%= @id %>
+</p>
 
-<h1>Photo Details</h1>
+<p>
+  File: <%= @photo %>
+</p>
 
-<p>Job: <%= @id %></p>
+<img
+  src={"/image/#{@photo}"}
+  style="max-width: 100%;"
+/>
 
-<p>Photo: <%= @photo %></p>
-
+<p>
+  <.link navigate={~p"/job/#{@id}"}>
+    Back to Job
+  </.link>
+</p>

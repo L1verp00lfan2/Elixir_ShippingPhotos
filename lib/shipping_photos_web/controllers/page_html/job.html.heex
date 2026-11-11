@@ -6,18 +6,23 @@
 
 <h2>Photos Found</h2>
 
-<ul>
-  <%= for photo <- @photos do %>
-    <li><%= photo %></li>
-  <% end %>
-</ul>
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
 
-<ul>
   <%= for photo <- @photos do %>
-    <li>
+    <div style="width: 220px; text-align: center;">
+
       <.link navigate={~p"/job/#{@id}/photo/#{photo}"}>
-        <%= photo %>
+        <img
+          src={"/image/#{photo}"}
+          style="max-width: 200px; max-height: 200px; border: 1px solid #ccc;"
+        />
       </.link>
-    </li>
+
+      <p style="font-size: 12px; word-break: break-word;">
+        <%= photo %>
+      </p>
+
+    </div>
   <% end %>
-</ul>
+
+</div>

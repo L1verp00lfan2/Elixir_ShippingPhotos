@@ -36,6 +36,13 @@ defmodule ShippingPhotosWeb.Router do
   get "/job_search", PageController, :job_search
   post "/job_search", PageController, :find_job
 
+# The `image` route is responsible for serving image files from the server.
+# It takes a dynamic parameter `:filename`, which represents the name of the image file to be served.
+# The request will be routed to the `image` action in the `PageController`, which will handle the logic for
+# retrieving and sending the requested image file to the client.
+
+
+  get "/image/:filename", PageController, :image
 end
 
 
