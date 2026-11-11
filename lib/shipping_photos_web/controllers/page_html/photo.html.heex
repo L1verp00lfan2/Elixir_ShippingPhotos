@@ -8,13 +8,18 @@
   File: <%= @photo %>
 </p>
 
-<img
-  src={"/image/#{@photo}"}
-  style="max-width: 100%;"
-/>
-
 <p>
   <.link navigate={~p"/job/#{@id}"}>
-    Back to Job
+    ← Back to Job
   </.link>
 </p>
+
+<img
+  src={"/image/#{@photo}"}
+  style="
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    margin: auto;
+  "
+/>
