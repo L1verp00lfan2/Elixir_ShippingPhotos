@@ -1,7 +1,13 @@
-
 <h1>📦 Job Details</h1>
 
 <p>
   Job Number: <%= @id %>
 </p>
 
+<h2>Photos</h2>
+
+<ul>
+  <%= for photo <- @photos do %>
+    <li><%= photo %></li>
+  <% end %>
+</ul>

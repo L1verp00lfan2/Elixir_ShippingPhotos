@@ -31,6 +31,11 @@ defmodule ShippingPhotosWeb.Router do
   get "/photos", PageController, :photos
 
 
+  #adding functionality to search for jobs by their ID. This route will handle GET requests to the /search/:id URL, where :id is a dynamic parameter representing the job ID. The request will be routed to the search action in the PageController, which will handle the logic for searching and displaying the job details based on the provided ID.
+
+  get "/job_search", PageController, :job_search
+  post "/job_search", PageController, :find_job
+
 end
 
 

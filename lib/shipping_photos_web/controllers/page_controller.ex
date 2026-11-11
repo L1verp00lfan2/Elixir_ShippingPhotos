@@ -25,7 +25,16 @@ end
 
 @spec job(Plug.Conn.t(), map()) :: Plug.Conn.t()
 def job(conn, %{"id" => id}) do
-  render(conn, :job, id: id)
+  photos = [
+    "Front.jpg",
+    "Side.jpg",
+    "Back.jpg"
+  ]
+
+  render(conn, :job,
+    id: id,
+    photos: photos
+  )
 end
 
 #Photo Details Page
@@ -39,5 +48,21 @@ end
 def photos(conn, _params) do
   render(conn, :photos)
 end
+
+
+# The `find_job` function is responsible for handling the form submission from the job search page.
+# It takes the job number entered by the user, constructs a URL for the job details page, and redirects the user to that page.
+#
+# JoeD  11/11/2026
+
+def job_search(conn, _params) do
+  render(conn, :job_search)
+end
+
+
+def find_job(conn, %{"job_number" => job_number}) do
+  redirect(conn, to: "/job/#{job_number}")
+end
+
 
 end
