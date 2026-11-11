@@ -1,5 +1,7 @@
 
   defmodule ShippingPhotosWeb.PageController do
+    @photo_folder "C:/Users/joe.dempsey/OneDrive - PlayCore/SHip_Scans"    # Use this path when i setup final
+                                                                          #destination for photos taken on the floor
   use ShippingPhotosWeb, :controller
 
   #Home Page
@@ -26,17 +28,16 @@ end
 @spec job(Plug.Conn.t(), map()) :: Plug.Conn.t()
 
 def job(conn, %{"id" => id}) do
-  photo_folder =
-    "C:/Users/joe.dempsey/OneDrive - PlayCore/Pictures/Camera Roll/2026"
+
 
   photos =
-    case File.ls(photo_folder) do
-      {:ok, files} ->
-        files
+  case File.ls(@photo_folder) do
+    {:ok, files} ->
+      files
 
-      {:error, reason} ->
-        ["ERROR: #{inspect(reason)}"]
-    end
+    {:error, reason} ->
+      ["ERROR: #{inspect(reason)}"]
+  end
 
   render(conn, :job,
     id: id,
@@ -74,15 +75,17 @@ end
 #Image Serving Functionality
 
 def image(conn, %{"filename" => filename}) do
-  photo_folder =
-    "C:/Users/joe.dempsey/OneDrive - PlayCore/Pictures/Camera Roll/2026"
 
-  photo_path = Path.join(photo_folder, filename)
+
+  photo_path = Path.join(@photo_folder, filename)
+
+  IO.inspect(photo_path)
 
   conn
   |> Plug.Conn.put_resp_content_type("image/jpeg")
   |> send_file(200, photo_path)
 end
+
 
 
 end
